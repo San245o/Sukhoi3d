@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Su-35 Flanker-E | Interactive 3D Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="hex-loader">
+                <div class="hex"></div>
+                <div class="hex"></div>
+                <div class="hex"></div>
+            </div>
+            <div class="loader-text">
+                <span class="loading-title">SU-35</span>
+                <span class="loading-subtitle">LOADING 3D MODEL...</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="loading-percent">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-logo">
+            <span class="logo-text">SU-35</span>
+        </div>
+        <div class="nav-links">
+            <a href="#hero" class="nav-link active" data-section="0">HOME</a>
+            <a href="#overview" class="nav-link" data-section="1">OVERVIEW</a>
+            <a href="#propulsion" class="nav-link" data-section="2">PROPULSION</a>
+            <a href="#avionics" class="nav-link" data-section="3">AVIONICS</a>
+            <a href="#weapons" class="nav-link" data-section="4">WEAPONS</a>
+            <a href="#stealth" class="nav-link" data-section="5">STEALTH</a>
+            <a href="#specs" class="nav-link" data-section="6">SPECS</a>
+        </div>
+    </nav>
+
+    <!-- Parallax Background Container -->
+    <div id="parallax-bg">
+    </div>
+    
+    <!-- Motion Blur Overlay -->
+    <div id="motion-blur-overlay"></div>
+
+    <!-- Three.js Canvas -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Scroll Sections -->
+    <div class="scroll-container">
+        <!-- Section 0: Hero -->
+        <section class="content-section hero-section" id="hero">
+            <div class="section-content">
+                <h1 class="hero-title">
+                    <span class="title-line">SUKHOI</span>
+                    <span class="title-line accent">SU-35</span>
+                    <span class="title-line sub">FLANKER-E</span>
+                </h1>
+                <p class="hero-description">
+                    Ultimate air superiority. Unmatched supermaneuverability.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">MACH 2.25</span>
+                        <span class="stat-label">MAX SPEED</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">3,600 KM</span>
+                        <span class="stat-label">RANGE</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">HARDPOINTS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Overview -->
+        <section class="content-section" id="overview">
+            <div class="section-content feature-content">
+                <div class="feature-card">
+                    <div class="card-header">
+                        <span class="card-number">01</span>
+                        <div class="card-line"></div>
+                    </div>
+                    <h2 class="card-title">TITANIUM AIRFRAME</h2>
+                    <p class="card-desc">Advanced composite structure with titanium alloy reinforcement. Designed for +9G/-3G extreme maneuvers.</p>
+                    <div class="card-stats">
+                        <div class="mini-stat">
+                            <span class="mini-value">21.9m</span>
+                            <span class="mini-label">LENGTH</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-value">18,400kg</span>
+                            <span class="mini-label">EMPTY</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Propulsion -->
+        <section class="content-section" id="propulsion">
+            <div class="section-content feature-content right-align">
+                <div class="feature-card">
+                    <div class="card-header">
+                        <span class="card-number">02</span>
+                        <div class="card-line"></div>
+                    </div>
+                    <h2 class="card-title">3D THRUST VECTORING</h2>
+                    <p class="card-desc">Twin AL-41F1S turbofans with ±15° vectoring nozzles. Enables Pugachev's Cobra and Kulbit maneuvers.</p>
+                    <div class="card-stats">
+                        <div class="mini-stat">
+                            <span class="mini-value">29,000</span>
+                            <span class="mini-label">KGF THRUST</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-value">MACH 2.25</span>
+                            <span class="mini-label">MAX SPEED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Avionics -->
+        <section class="content-section" id="avionics">
+            <div class="section-content feature-content">
+                <div class="feature-card">
+                    <div class="card-header">
+                        <span class="card-number">03</span>
+                        <div class="card-line"></div>
+                    </div>
+                    <h2 class="card-title">IRBIS-E RADAR</h2>
+                    <p class="card-desc">PESA radar with 400km detection range. Tracks 30 targets simultaneously, engages 8.</p>
+                    <div class="card-stats">
+                        <div class="mini-stat">
+                            <span class="mini-value">400km</span>
+                            <span class="mini-label">RANGE</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-value">30</span>
+                            <span class="mini-label">TARGETS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Weapons -->
+        <section class="content-section" id="weapons">
+            <div class="section-content feature-content right-align">
+                <div class="feature-card">
+                    <div class="card-header">
+                        <span class="card-number">04</span>
+                        <div class="card-line"></div>
+                    </div>
+                    <h2 class="card-title">WEAPONS ARRAY</h2>
+                    <p class="card-desc">12 hardpoints carrying 8,000kg payload. R-77 BVR missiles, guided bombs, GSh-30-1 cannon.</p>
+                    <div class="card-stats">
+                        <div class="mini-stat">
+                            <span class="mini-value">12</span>
+                            <span class="mini-label">PYLONS</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-value">8,000kg</span>
+                            <span class="mini-label">PAYLOAD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Stealth -->
+        <section class="content-section" id="stealth">
+            <div class="section-content feature-content right-align">
+                <div class="feature-card">
+                    <div class="card-header">
+                        <span class="card-number">05</span>
+                        <div class="card-line"></div>
+                    </div>
+                    <h2 class="card-title">KHIBINY-M ECM</h2>
+                    <p class="card-desc">Electronic warfare suite with radar jamming, missile warning, and chaff/flare dispensers.</p>
+                    <div class="card-stats">
+                        <div class="mini-stat">
+                            <span class="mini-value">360°</span>
+                            <span class="mini-label">COVERAGE</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-value">UV</span>
+                            <span class="mini-label">DETECTION</span>
+                        </div>
+                    </div>
+                </div>
+            </div>\n        </section>
+
+        <!-- Section 6: Specifications -->
+        <section class="content-section specs-section" id="specs">
+            <div class="section-content">
+                <div class="feature-card visible" style="max-width: 400px;">
+                    <div class="card-header">
+                        <span class="card-number">06</span>
+                        <div class="card-line"></div>
+                    </div>
+                    <h2 class="card-title">SPECIFICATIONS</h2>
+                    <div class="specs-mini">
+                        <div class="spec-mini-row">
+                            <span>Max Speed</span>
+                            <span>Mach 2.25</span>
+                        </div>
+                        <div class="spec-mini-row">
+                            <span>Ceiling</span>
+                            <span>18,000m</span>
+                        </div>
+                        <div class="spec-mini-row">
+                            <span>Range</span>
+                            <span>3,600km</span>
+                        </div>
+                        <div class="spec-mini-row">
+                            <span>Thrust</span>
+                            <span>29,000 kgf</span>
+                        </div>
+                        <div class="spec-mini-row">
+                            <span>Radar</span>
+                            <span>Irbis-E 400km</span>
+                        </div>
+                        <div class="spec-mini-row">
+                            <span>Weapons</span>
+                            <span>12 pylons</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress">
+        <div class="progress-track">
+            <div class="progress-thumb" id="scroll-thumb"></div>
+        </div>
+        <div class="section-markers">
+            <div class="section-marker active" data-section="0"></div>
+            <div class="section-marker" data-section="1"></div>
+            <div class="section-marker" data-section="2"></div>
+            <div class="section-marker" data-section="3"></div>
+            <div class="section-marker" data-section="4"></div>
+            <div class="section-marker" data-section="5"></div>
+            <div class="section-marker" data-section="6"></div>
+        </div>
+    </div>
+
+    <!-- Grid Overlay -->
+    <div class="grid-overlay"></div>
+
+    <!-- Scanline Effect -->
+    <div class="scanline"></div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
